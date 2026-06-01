@@ -1,0 +1,58 @@
+
+Algorithm Dot_Product_Procedure
+Constants
+    MAX = 100 // Dimension maximale autorisée pour les tableaux
+Types
+    Vector = Array[1..MAX] of Real
+Variables
+    v1, v2 : Vector
+    n, dim, i, j : Integer
+    ps : Real
+
+// --- Inclusion de la procédure définie à la question 1 ---
+Procedure dot_product(v1 : Vector, v2 : Vector, dim : Integer, VAR ps : Real)
+Variables 
+    i : Integer
+Begin
+    ps ← 0
+    For i from 1 to dim Do
+        ps ← ps + (v1[i] * v2[i])
+    EndFor
+End
+
+// --- Corps du programme principal ---
+Begin
+    Write("Entrez la dimension des vecteurs: ")
+    Read(dim)
+    Write("Entrez le nombre de couples de vecteurs à tester (n): ")
+    Read(n)
+
+    // Boucle principale pour traiter les n couples
+    For i from 1 to n Do
+        Write("--- Saisie du couple de vecteurs n°. ", i, " ---")
+        
+        // Saisie du premier vecteur
+        Write("Saisie du premier vecteur:")
+        For j from 1 to dim Do
+            Write("Composante ", j, ": ")
+            Read(v1[j])
+        EndFor
+
+        // Saisie du deuxième vecteur
+        Write("Inputting the second vector:")
+        For j from 1 to dim Do
+            Write("Composante ", j, ": ")
+            Read(v2[j])
+        EndFor
+
+        // Appel de la procédure (ps est modifié par référence)
+        dot_product(v1, v2, dim, ps)
+
+        // Vérification de l'orthogonalité
+        If ps = 0 Then
+            Write("Résultat : Les deux vecteurs du couple ", i, " sont orthogonaux.")
+        Else
+            Write("Résultat : Les deux vecteurs ne sont pas orthogonaux. (Produit scalaire = ", ps, ")")
+        EndIf
+    EndFor
+End

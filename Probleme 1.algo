@@ -1,0 +1,47 @@
+ALGORITHM SommeElementsDistincts
+VAR
+    ensemble1, ensemble2 : ARRAY OF INTEGER
+    i, j, somme : INTEGER
+    is_present : BOOLEAN
+
+BEGIN
+    somme := 0
+    
+
+    FOR i FROM 0 TO length(ensemble1) - 1 DO
+        is_present := FALSE
+        FOR j FROM 0 TO length(ensemble2) - 1 DO
+            IF ensemble1[i] = ensemble2[j] THEN
+                is_present := TRUE
+
+                Break 
+            END IF
+        END FOR
+        
+
+        IF is_present = FALSE THEN
+            somme := somme + ensemble1[i]
+        END IF
+    END FOR
+
+
+    FOR i FROM 0 TO length(ensemble2) - 1 DO
+        is_present := FALSE
+        FOR j FROM 0 TO length(ensemble1) - 1 DO
+            IF ensemble2[i] = ensemble1[j] THEN
+                is_present := TRUE
+                Break
+            END IF
+        END FOR
+        
+        IF is_present = FALSE THEN
+            somme := somme + ensemble2[i]
+        END IF
+    END FOR
+
+    Write("La somme des éléments distincts est: ", somme)
+END
+
+
+
+
